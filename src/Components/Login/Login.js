@@ -1,26 +1,30 @@
-import React, { useState,useContext } from 'react'
-import { FirebaseContext } from '../../store/firebaseContext'
-import Logo from '../../olx-logo.png'
-import './Login.css'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useContext } from "react"
+import { FirebaseContext } from "../../store/Context"
+import Logo from "../../olx-logo.png"
+import "./Login.css"
+import { useHistory } from "react-router-dom"
 
 function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const {firebase} = useContext(FirebaseContext)
-  const history = useHistory()
-  const loginHandler = (e)=>{
-    e.preventDefault()
-    firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
-      history.push('/')
-    }).catch((err)=>{
-      alert(err.message)
-    })
-  }
-  return (
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const { firebase } = useContext(FirebaseContext)
+	const history = useHistory()
+	const loginHandler = (e) => {
+		e.preventDefault()
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then(() => {
+				history.push("/")
+			})
+			.catch((err) => {
+				alert(err.message)
+			})
+	}
+	return (
 		<div>
 			<div className="loginParentDiv">
-				<img width="200px" height="200px" alt='OLX' src={Logo}></img>
+				<img width="200px" height="200px" alt="OLX" src={Logo}></img>
 				<form onSubmit={loginHandler}>
 					<label htmlFor="fname">Email</label>
 					<br />
@@ -37,7 +41,7 @@ function Login() {
 					<br />
 					<input
 						className="input"
-						type="password" 
+						type="password"
 						id="password"
 						name="password"
 						value={password}
@@ -47,10 +51,10 @@ function Login() {
 					<br />
 					<button>Login</button>
 				</form>
-				<a href='/signup'>Signup</a>
+				<a href="/signup">Signup</a>
 			</div>
 		</div>
-  )
+	)
 }
 
-export default Login;
+export default Login
