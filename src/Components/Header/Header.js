@@ -15,7 +15,7 @@ function Header() {
   return (
 		<div className="headerParentDiv">
 			<div className="headerChildDiv">
-				<div
+				<div 
 					onClick={() => {
 						history.push("/")
 					}}
@@ -25,7 +25,7 @@ function Header() {
 				</div>
 				<div className="placeSearch">
 					<Search></Search>
-					<input type="text" />
+					<input type="text" value="India"/>
 					<Arrow></Arrow>
 				</div>
 				<div className="productSearch">
@@ -44,7 +44,9 @@ function Header() {
 					<Arrow></Arrow>
 				</div>
 				<div className="loginPage">
-					<span>{user ? `Welcome ${user.displayName}` : "Login"}</span>
+					<div>{user ? `Welcome ${user.displayName}` : <a onClick={()=>{
+						history.push('/login')
+					}}>"Login"</a>}</div>
 					<hr />
 				</div>
 				<div>
