@@ -11,8 +11,7 @@ function View() {
 	console.log(firebase)
 	useEffect(() => {
 		const { userId } = postDetails
-		firebase
-			.firestore()
+		firebase.firestore()
 			.collection("users")
 			.where("id", "==", userId)
 			.get()
@@ -20,6 +19,9 @@ function View() {
 				res.forEach((doc) => {
 					setUserDetails(doc.data())
 				})
+			})
+			.catch((err)=>{
+				console.log(err.message);
 			})
 	}, [])
 

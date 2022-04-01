@@ -20,8 +20,10 @@ function Posts() {
 					return { ...product.data(), id: product.id }
 				})
 				setProducts(allPost)
+			}).catch((err)=>{
+				console.log(err)
 			})
-	})
+	},[])
 	return (
 		<div className="postParentDiv">
 			<div className="moreView">
@@ -49,9 +51,9 @@ function Posts() {
 									<p className="rate">&#x20B9; {product.price}</p>
 									<span className="kilometer">{product.category}</span>
 									<p className="name"> {product.name}</p>
-								</div>
-								<div className="date">
-									<span>{product.createdAt}</span>
+									<div className="date">
+										<span>{product.createdAt}</span>
+									</div>
 								</div>
 							</div>
 						)
@@ -63,7 +65,7 @@ function Posts() {
 					<span>Fresh recommendations</span>
 				</div>
 				<div className="cards">
-					{products.map((product) => {
+					{products.slice(2,8).map((product) => {
 						return (
 							<div
 								onClick={() => {

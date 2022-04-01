@@ -53,8 +53,12 @@ function Header() {
 					{user && (
 						<button
 							onClick={() => {
-								firebase.auth().signOut()
-								history.push("/login")
+								let b = window.confirm("Are you sure?")
+								if(b){
+									firebase.auth().signOut()
+									history.push("/login")
+								}
+								
 							}}
 						>
 							Logout

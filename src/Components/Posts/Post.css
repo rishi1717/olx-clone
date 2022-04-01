@@ -33,10 +33,9 @@
 
 .card {
   margin-right: 15px;
-  padding: 13px;
+  padding: 20px;
   max-width: 222px;
   width: 222px;
-  height: 270px;
   display: inline-block;
   cursor: pointer;
 }
@@ -60,6 +59,7 @@
   min-height: 100%;
   text-align: center;
 }
+
 .card .content .rate {
   margin-top: 10px;
   font-size: larger;
@@ -70,6 +70,7 @@
 }
 .card .content .name {
   font-size: small;
+  font-weight: 900;
 }
 .card .date {
   display: flex;
