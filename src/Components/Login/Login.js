@@ -7,10 +7,12 @@ import { useHistory } from "react-router-dom"
 function Login() {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	const [err,setErr] = useState("")
 	const { firebase } = useContext(FirebaseContext)
 	const history = useHistory()
 	const loginHandler = (e) => {
 		e.preventDefault()
+		setErr("")
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
@@ -18,11 +20,14 @@ function Login() {
 				history.push("/")
 			})
 			.catch((err) => {
-				alert(err.message)
+				setErr(err.message)
 			})
 	}
 	return (
 		<div>
+			<div>
+				<p className="errorDiv">{err}</p>
+			</div>
 			<div className="loginParentDiv">
 				<img width="200px" height="200px" alt="OLX" src={Logo}></img>
 				<form onSubmit={loginHandler}>
@@ -51,9 +56,13 @@ function Login() {
 					<br />
 					<button>Login</button>
 				</form>
-				<a onClick={()=>{
-					history.push('/signup')
-				}}>Signup</a>
+				<a
+					onClick={() => {
+						history.push("/signup")
+					}}
+				>
+					Signup
+				</a>
 			</div>
 		</div>
 	)

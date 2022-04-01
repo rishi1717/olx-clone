@@ -36,3 +36,8 @@
     cursor: pointer;
   }
   
+  .errorDiv{
+    text-align: center;
+    color: red;
+    margin-top: 1rem;
+  }
