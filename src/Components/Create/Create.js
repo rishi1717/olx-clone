@@ -3,6 +3,7 @@ import "./Create.css"
 import Header from "../Header/Header"
 import { useHistory } from "react-router-dom"
 import { FirebaseContext, AuthContext } from "../../store/Context"
+import Swal from "sweetalert2"
 const Create = () => {
 	const { firebase } = useContext(FirebaseContext)
 	const { user } = useContext(AuthContext)
@@ -30,7 +31,7 @@ const Create = () => {
 								userId: user.uid,
 								createdAt: date.toDateString(),
 							})
-							alert('Product added')
+							Swal.fire("Product added")
 							history.push("/")
 						})
 						.catch((err) => {
@@ -46,16 +47,18 @@ const Create = () => {
 			if (name.length < 2) setErr("Provide a proper name")
 			if (category.length < 3) setErr("Set a category")
 			if (price < 5) setErr("Provide proper amount")
+			if (!price) setErr("Set a price")
 			if (!image) setErr("Upload an image")
-			if (name.length < 2 || category.length < 3 && !image)
-				setErr("Fill the fields")
+			if (!image) setErr("Provide an image")
+			if (category.length < 3) setErr("Provide a category")
+			if (name.length < 2) setErr("Provide a name for the product")
 		}
 	}
 	return (
 		<Fragment>
 			<Header />
 
-			<card>
+			<div>
 				<div className="centerDiv">
 					<div>
 						<p className="errDiv">{err}</p>
@@ -71,7 +74,6 @@ const Create = () => {
 							setName(e.target.value)
 						}}
 						name="Name"
-						defaultValue="John"
 					/>
 					<br />
 					<label htmlFor="category">Category</label>
@@ -85,7 +87,6 @@ const Create = () => {
 							setCategory(e.target.value)
 						}}
 						name="category"
-						defaultValue="John"
 					/>
 					<br />
 					<label htmlFor="price">Price</label>
@@ -120,7 +121,7 @@ const Create = () => {
 						upload and Submit
 					</button>
 				</div>
-			</card>
+			</div>
 		</Fragment>
 	)
 }

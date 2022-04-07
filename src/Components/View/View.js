@@ -23,7 +23,7 @@ function View() {
 			.catch((err)=>{
 				console.log(err.message);
 			})
-	}, [])
+	}, [firebase,postDetails])
 
 	return (
 		<div className="viewParentDiv">

@@ -23,7 +23,7 @@ function Posts() {
 			}).catch((err)=>{
 				console.log(err)
 			})
-	},[])
+	},[firebase])
 	return (
 		<div className="postParentDiv">
 			<div className="moreView">
@@ -40,6 +40,7 @@ function Posts() {
 									history.push("/view")
 								}}
 								className="card"
+								key={product.name}
 							>
 								<div className="favorite">
 									<Heart></Heart>
@@ -73,6 +74,7 @@ function Posts() {
 									history.push("/view")
 								}}
 								className="card"
+								key={product.name}
 							>
 								<div className="favorite">
 									<Heart></Heart>

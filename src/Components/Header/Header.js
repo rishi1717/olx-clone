@@ -1,4 +1,5 @@
 import React,{useContext} from 'react';
+import Swal from 'sweetalert2'
 
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
@@ -25,7 +26,7 @@ function Header() {
 				</div>
 				<div className="placeSearch">
 					<Search></Search>
-					<input type="text" value="India"/>
+					<input type="text" value="India" onChange={()=>{}}/>
 					<Arrow></Arrow>
 				</div>
 				<div className="productSearch">
@@ -44,20 +45,27 @@ function Header() {
 					<Arrow></Arrow>
 				</div>
 				<div className="loginPage">
-					<div>{user ? `Welcome ${user.displayName}` : <a onClick={()=>{
+					<div>{user ? `Welcome ${user.displayName}` : <button onClick={()=>{
 						history.push('/login')
-					}}>"Login"</a>}</div>
+					}}>"Login"</button>}</div>
 					<hr />
 				</div>
 				<div>
 					{user && (
 						<button
 							onClick={() => {
-								let b = window.confirm("Are you sure?")
-								if(b){
-									firebase.auth().signOut()
-									history.push("/login")
-								}
+								Swal.fire({
+									title: "Logout?",
+									showCancelButton: true,
+									confirmButtonColor: "#3085d6",
+									cancelButtonColor: "#d33",
+									confirmButtonText: "Logout",
+								}).then((result) => {
+									if (result.isConfirmed) {
+										firebase.auth().signOut()
+										history.push("/login")
+									}
+								})
 								
 							}}
 						>

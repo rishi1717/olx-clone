@@ -100,13 +100,13 @@ export default function Signup() {
 					<br />
 					<button>Signup</button>
 				</form>
-				<a
+				<button
 					onClick={() => {
 						history.push("/login")
 					}}
 				>
 					Login
-				</a>
+				</button>
 			</div>
 		</div>
 	)
